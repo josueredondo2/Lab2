@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             x:Name="HomePage"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Laboratorio2.View.HomePage">
+    <!--Stack Principal-->
+    <StackLayout>
+        <!--Stack de busqueda-->
+        <StackLayout HeightRequest="50" Margin="20">
+            <!--Entry con el texto a buscar-->
+            <Entry Text="{Binding TextoBuscar}"/>
+        </StackLayout>
+        <!--Lista de cuentas y su binding-->
+        <ListView x:Name="lstvAccounts"
+                  ItemsSource="{Binding lstPersonas}">
+            <!--Template de la lista-->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <!--Objeta de la celda-->
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <!--Evento tap-->
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command ="{Binding Path=BindingContext.VerPersonaCommand, Source={x:Reference HomePage}}"
+                                                            CommandParameter ="{Binding Id}"/>
+                            </StackLayout.GestureRecognizers>
+                            <!--Texto a mostrar-->
+                            <Label Text="{Binding Nombre}" HorizontalOptions="Start" VerticalOptions="Center"/>
+                            <!--Imagen a mostrar-->
+                            <Image x:Name="imgExpan" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Source="ver_icon.png" HeightRequest="28" WidthRequest="28"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackLayout >
+            <!--Texto de nombre a ingresar-->
+            <Entry Text="{Binding NuevaPersona}"/>
+            <!--Boton de agregar-->
+            <Button Text="Agregar" Command="{Binding AgregarPersonaCommand}"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
