@@ -97,6 +97,7 @@ C:\Git\Lab2\Laboratorio2\Laboratorio2\Laboratorio2.Android\obj\Debug\Laboratorio
 C:\Git\Lab2\Laboratorio2\Laboratorio2\Laboratorio2.Android\obj\Debug\Laboratorio2.Droid.View.HomeMenu.xaml.g.cs
 C:\Git\Lab2\Laboratorio2\Laboratorio2\Laboratorio2.Android\obj\Debug\Laboratorio2.Droid.View.MainPage.xaml.g.cs
 C:\Git\Lab2\Laboratorio2\Laboratorio2\Laboratorio2.Android\obj\Debug\Laboratorio2.Droid.View.Login.xaml.g.cs
+C:\Git\Lab2\Laboratorio2\Laboratorio2\Laboratorio2.Android\obj\Debug\Laboratorio2.Droid.View.Venta.xaml.g.cs
 C:\Git\Lab2\Laboratorio2\Laboratorio2\Laboratorio2.Android\obj\Debug\Laboratorio2.Android.dll
 C:\Git\Lab2\Laboratorio2\Laboratorio2\Laboratorio2.Android\obj\Debug\Laboratorio2.Android.pdb
 C:\Git\Lab2\Laboratorio2\Laboratorio2\Laboratorio2.Android\obj\Debug\android\bin\com.companyname.Laboratorio2.apk

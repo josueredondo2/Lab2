@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ArticuloModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\LoginModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\PersonaModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VentasModel.cs" />
@@ -35,6 +36,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\UsuarioDetalle.xaml.cs">
       <DependentUpon>UsuarioDetalle.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\Venta.xaml.cs">
+      <DependentUpon>Venta.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -70,6 +75,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Venta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

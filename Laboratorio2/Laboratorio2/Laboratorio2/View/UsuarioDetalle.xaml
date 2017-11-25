@@ -6,16 +6,16 @@
         <!--Detalle Persona-->
         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Padding="30">
             <StackLayout>
-                <Image Source="{Binding PersonaActual.FotoPath}" HeightRequest="50" WidthRequest="50"/>
+                <Image Source="ver_icon.png" HeightRequest="50" WidthRequest="50"/>
             </StackLayout>
             <StackLayout VerticalOptions="Center">
                 <Label Text="{Binding PersonaActual.Nombre}"/>
                 <Label Text="{Binding PersonaActual.Telefono}"/>
             </StackLayout>
         </StackLayout>
-        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Blue">
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
             <!--Informacion de Persona-->
-            <StackLayout BackgroundColor="Green" HorizontalOptions="Fill" VerticalOptions="Start">
+            <StackLayout HorizontalOptions="Fill" VerticalOptions="Start">
                 <!--Nombre-->
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Nombre Completo:"/>
@@ -36,14 +36,44 @@
                     <Label Text="Fecha de Nacimiento:"/>
                     <Label Text="{Binding PersonaActual.FechaNacimiento}"/>
                 </StackLayout>
-            </StackLayout>
+            </StackLayout >
+            
             <!--Lista de Ventas-->
+
+            </StackLayout>
             <StackLayout>
+                <Label Text="Lista de Ventas" FontSize="Large" TextColor="Green"/>
+            <StackLayout Orientation="Horizontal">
+
+                <ListView x:Name="lstvAccounts"
+                  ItemsSource="{Binding PersonaActual.LstVentas}">
+                    <!--Template de la lista-->
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <!--Objeta de la celda-->
+                            <ViewCell >
+                            
+                                <StackLayout Orientation="Horizontal">
+                                    <!--Evento tap-->
+                                    <!--<StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command ="{Binding Path=BindingContext.VerPersonaCommand, Source={x:Reference HomePage}}"
+                                                            CommandParameter ="{Binding Id}"/>
+                                    </StackLayout.GestureRecognizers>-->
+                                    <!--Texto a mostrar-->
+                                    <Label Text="{Binding Id}"  HorizontalOptions="Start" VerticalOptions="Center" FontSize="Medium"/>
+                                    <Label Text="{Binding Tipo}" HorizontalOptions="Start" VerticalOptions="Center" FontSize="Medium" />
+                                    <Label Text="{Binding Monto}" HorizontalOptions="Start" VerticalOptions="Center" FontSize="Medium" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
             <!--Cuadro Rojo-->
-            <StackLayout BackgroundColor="Red" HeightRequest="50" VerticalOptions="EndAndExpand" HorizontalOptions="Fill">
+            <StackLayout  HeightRequest="50" VerticalOptions="EndAndExpand" HorizontalOptions="Fill">
             </StackLayout>
         </StackLayout>
-        <Button Text="Editar" VerticalOptions="End" HeightRequest="50"/>
+        <!--<Button Text="Editar" VerticalOptions="End" HeightRequest="50"/>-->
+        <Button Text="Agregar Venta" VerticalOptions="End" HeightRequest="50" Command="{Binding AgregarVentaCommand}"/>
     </StackLayout>
 </ContentPage>

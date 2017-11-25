@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Laboratorio2.View.Venta"
+             x:Name="Venta"
+             Title="Articulos">
+    <StackLayout >
+        <StackLayout>
+            <Entry Text= "" Placeholder="Descripcion"/>
+            <!--<DatePicker Date="" Placeholder="Fecha"/>-->
+            <Entry Text= "" Placeholder="Tipo" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+
+            <ListView x:Name="lstArticulo"
+                  ItemsSource="{Binding lstArticulos}">
+
+                <ListView.Header>
+                    <Label Text="Lista de articulos" FontSize="Medium" TextColor="Blue"/>
+                </ListView.Header>
+                <!--Template de la lista-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <!--Objeta de la celda-->
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command ="{Binding Path=BindingContext.AgregarArticuloCommand, Source={x:Reference Venta}}"
+                                                            CommandParameter ="{Binding Id}"/>
+                                </StackLayout.GestureRecognizers>
+                                <!--Texto a mostrar-->
+                                <Label Text="{Binding Id}" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                <Label Text="{Binding Nombre}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Label Text="{Binding Precio}" HorizontalOptions="End" VerticalOptions="Center"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView x:Name="lstArticulosNuevos"
+                  ItemsSource="{Binding lstArticulosNuevos}">
+                <ListView.Header>
+                    <Label Text="Mi lista de articulos" FontSize="Medium" TextColor="Blue"/>
+                </ListView.Header>
+                <ListView.Footer>
+                   
+                </ListView.Footer>
+                <!--Template de la lista-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <!--Objeta de la celda-->
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                
+                                <!--Texto a mostrar-->
+                                <Label Text="{Binding Id}" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                <Label Text="{Binding Nombre}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Label Text="{Binding Precio}" HorizontalOptions="End" VerticalOptions="Center"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </StackLayout>
+        <StackLayout>
+            <Label Text="Total a cancelar:" HorizontalOptions="Center" FontSize="Medium" TextColor="Red"/>
+            <Label Text="{Binding TotalVenta}" HorizontalOptions="Center" FontSize="Medium" TextColor="Red" />
+            <Button Text="Finalizar Venta" VerticalOptions="End" HeightRequest="50" Command="{Binding NuevaVentaCommand}"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

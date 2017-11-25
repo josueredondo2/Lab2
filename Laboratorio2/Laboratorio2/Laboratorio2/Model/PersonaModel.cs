@@ -43,8 +43,16 @@ namespace Laboratorio2.Model
 
             ObservableCollection<PersonaModel> lstPersonas = new ObservableCollection<PersonaModel>();
 
+            ObservableCollection<VentasModel> LstVenta = new ObservableCollection<VentasModel>();
 
-            lstPersonas.Add(new PersonaModel { Id = 1, Nombre = "Carlos", ApellidoPaterno = "Bejarano", ApellidoMaterno = "Alpizar", FotoPath = "foto_perfil.png" });
+            LstVenta.Add( new VentasModel{
+                Id=1,
+                Fecha = DateTime.Now,
+                Monto = 200,
+                Tipo = 1
+            });
+
+            lstPersonas.Add(new PersonaModel { Id = 1, Nombre = "Carlos", ApellidoPaterno = "Bejarano", ApellidoMaterno = "Alpizar", FotoPath = "foto_perfil.png", LstVentas = LstVenta});
             lstPersonas.Add(new PersonaModel { Id = 2, Nombre = "Yendry", ApellidoPaterno = "Bejarano", ApellidoMaterno = "Alpizar", FotoPath = "foto_perfil.png" });
             lstPersonas.Add(new PersonaModel { Id = 3, Nombre = "Natasha", ApellidoPaterno = "Bejarano", ApellidoMaterno = "Alpizar", FotoPath = "foto_perfil.png" });
             lstPersonas.Add(new PersonaModel { Id = 4, Nombre = "Jose", ApellidoPaterno = "Bejarano", ApellidoMaterno = "Alpizar", FotoPath = "foto_perfil.png" });
@@ -54,9 +62,7 @@ namespace Laboratorio2.Model
             lstPersonas.Add(new PersonaModel { Id = 8, Nombre = "Johan", ApellidoPaterno = "Bejarano", ApellidoMaterno = "Alpizar", FotoPath = "foto_perfil.png" });
             lstPersonas.Add(new PersonaModel { Id = 9, Nombre = "Marcela", ApellidoPaterno = "Bejarano", ApellidoMaterno = "Alpizar", FotoPath = "foto_perfil.png" });
             lstPersonas.Add(new PersonaModel { Id = 10, Nombre = "Irene", ApellidoPaterno = "Bejarano", ApellidoMaterno = "Alpizar", FotoPath = "foto_perfil.png" });
-
-            Thread.Sleep(4000);
-
+            
 
             return lstPersonas;
 

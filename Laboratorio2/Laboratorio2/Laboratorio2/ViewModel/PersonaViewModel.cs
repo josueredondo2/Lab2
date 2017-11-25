@@ -106,10 +106,66 @@ namespace Laboratorio2.ViewModel
             }
         }
 
+        private double _TotalVenta = 0;
+
+        public double TotalVenta
+        {
+            get
+            {
+                return _TotalVenta;
+            }
+            set
+            {
+                _TotalVenta = value;
+                OnPropertyChanged("TotalVenta");
+                
+            }
+        }
+
+
+
+
+
+        private ObservableCollection<ArticuloModel> _lstArticulos = new ObservableCollection<ArticuloModel>();
+
+        public ObservableCollection<ArticuloModel> lstArticulos
+        {
+            get
+            {
+                return _lstArticulos;
+            }
+            set
+            {
+                _lstArticulos = value;
+                OnPropertyChanged("lstArticulos");
+            }
+        }
+
+
+        private ObservableCollection<ArticuloModel> _lstArticulosNuevos = new ObservableCollection<ArticuloModel>();
+
+        public ObservableCollection<ArticuloModel> lstArticulosNuevos
+        {
+            get
+            {
+                return _lstArticulosNuevos;
+            }
+            set
+            {
+                _lstArticulosNuevos = value;
+                OnPropertyChanged("lstArticulosNuevos");
+            }
+        }
+
+
 
         public ICommand AgregarPersonaCommand { get; set; }
         public ICommand BorrarPersonaCommand { get; set; }
         public ICommand VerPersonaCommand { get; set; }
+        public ICommand AgregarVentaCommand{ get; set; }
+        public ICommand AgregarArticuloCommand { get; set; }
+
+        public ICommand NuevaVentaCommand { get; set; }
 
 
         #endregion
@@ -122,6 +178,13 @@ namespace Laboratorio2.ViewModel
             lstOriginalPersonas.Add(new PersonaModel { Nombre = NuevaPersona });
 
             NuevaPersona = string.Empty;
+        }
+
+        private void AgregarArticulo(int id)
+        {
+            ArticuloModel Articulo = lstArticulos.Where(x => x.Id == id).FirstOrDefault();
+            lstArticulosNuevos.Add(Articulo);
+            TotalVenta += Articulo.Precio;
         }
 
         private void FiltrarPersona(string textoBuscar)
@@ -146,12 +209,44 @@ namespace Laboratorio2.ViewModel
 
         }
 
+        private void AgregarVenta()
+        {
+            ((MasterDetailPage)App.Current.MainPage).Detail.Navigation.PushAsync(new Venta());
+        }
+
+        private void NuevaVenta()
+        {
+            int consecutivo = PersonaActual.LstVentas != null ? PersonaActual.LstVentas.Max(x => x.Id) + 1 : 1;
+
+            if (PersonaActual.LstVentas == null)
+                PersonaActual.LstVentas = new ObservableCollection<VentasModel>();
+
+            PersonaActual.LstVentas.Add(new VentasModel
+            {
+                Id = consecutivo,
+                Descripcion = "Nueva venta",
+                Fecha = DateTime.Now,
+                Monto = TotalVenta,
+                Tipo = 1,
+                ArticuloId = lstArticulosNuevos
+            });
+
+            lstArticulosNuevos.Clear();
+            TotalVenta = 0;
+
+            ((MasterDetailPage)App.Current.MainPage).Detail.Navigation.PushAsync(new UsuarioDetalle());
+        }
+
+
+
         private async Task InitClass()
         {
 
             lstPersonas = await PersonaModel.ObtenerPersonas();
 
             lstOriginalPersonas = lstPersonas.ToList();
+
+            lstArticulos = await ArticuloModel.ObtenerArticulos();
         }
 
         private void InitCommands()
@@ -159,6 +254,9 @@ namespace Laboratorio2.ViewModel
             AgregarPersonaCommand = new Command(AgregarPersona);
             BorrarPersonaCommand = new Command<int>(BorrarPersona);
             VerPersonaCommand = new Command<int>(VerPersona);
+            AgregarVentaCommand = new Command(AgregarVenta);
+            AgregarArticuloCommand = new Command<int>(AgregarArticulo);
+            NuevaVentaCommand = new Command(NuevaVenta);
         }
 
         #endregion
